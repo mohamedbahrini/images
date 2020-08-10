@@ -1,0 +1,84 @@
+<div class="row">
+  <div class="col-md-5">
+    <div class="card subClass">
+      <div class="header">
+        <h4 class="title">All users</h4>
+      </div>
+      <hr>
+      <div class="content">
+        <ul class="list-unstyled team-members">
+          <li *ngFor="let user of users | async">
+            <div class="row justify-content-md-center">
+              <div class="col-xs-2 col-md-2">
+                <div class="avatar">
+                  <img src="{{ user.photo }}" alt="Circle Image" class="avatar border-white">
+                </div>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                {{ user.username }}
+                <br/>
+                <span class="text-muted">
+                  <small>phone: {{ user.phone }}</small>
+                </span>
+              </div>
+
+              <div class="col-xs-8 col-md-8 text-right">
+                <a class="btn btn-sm btn-success btn-icon" [routerLink]="['messages', user.username]">
+                  <i class="fa fa-envelope"></i>messages</a>
+                <a class="btn btn-sm btn-success btn-icon" [routerLink]="['send', user.username]">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>send</a>
+                <button class="btn btn-sm btn-success btn-icon" (click)="addFavorite(user.username);">
+                  <i class="fa fa-user-plus" aria-hidden="true"></i>favorite</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+    <!--<div class="card subClass" *ngIf="favorits; else notcarduser">-->
+    <div class="card subClass">
+      <div class="header">
+        <h4 class="title">Favorite users</h4>
+      </div>
+      <hr>
+      <div class="content">
+        <ul class="list-unstyled team-members">
+          <li *ngFor="let user of favorits | async">
+            <div class="row justify-content-md-center">
+              <div class="col-xs-2 col-md-2">
+                <div class="avatar">
+                  <img src="{{ user.photo }}" alt="Circle Image" class="avatar border-white">
+                </div>
+              </div>
+              <div class="col-xs-2 col-md-2">
+                {{ user.username }}
+                <br/>
+                <span class="text-muted">
+                  <small>phone: {{ user.phone }}</small>
+                </span>
+              </div>
+
+              <div class="col-xs-8 col-md-8 text-right">
+                <a class="btn btn-sm btn-success btn-icon" [routerLink]="['messages', user.username]">
+                  <i class="fa fa-envelope"></i>messages</a>
+                <a class="btn btn-sm btn-success btn-icon" [routerLink]="['send', user.username]">
+                  <i class="fa fa-paper-plane" aria-hidden="true"></i>send</a>
+                <button class="btn btn-sm btn-success btn-icon" (click)="deleteFavorite(user.username);">
+                  <i class="fa fa-user-times" aria-hidden="true"></i>remove</button>
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+
+    <ng-template #notcarduser>
+      loading
+      <fa name="spinner" animation="spin"></fa>
+    </ng-template>
+  </div>
+
+  <div class="col-md-7 anyClass">
+    <router-outlet></router-outlet>
+  </div>
+</div>

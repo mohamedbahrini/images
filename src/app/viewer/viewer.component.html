@@ -1,0 +1,295 @@
+<ng-template #content let-c="close" let-d="dismiss">
+    <div class="modal-body">
+      <ul class="list-group" *ngFor="let value of values; let k = index">
+        <li class="list-group-item">
+          {{keys[k]}} : {{value}}
+        </li>
+      </ul>
+    </div>
+  </ng-template>
+
+<div class="row ">
+  <div class="col-md-3">
+    <div class="card text-center">
+      <div class="content">
+        <h3> Open images</h3>
+        <div class="row justify-content-center"> 
+          <div class="icon-big icon-warning text-center">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <label class="btn btn-success btn-xs">
+                  <i class="fa fa-upload" aria-hidden="true"></i>
+                  Browse
+                  <input type="file" id="fichier" name="fichier" (change)="fileChangeEvent($event)" style="display: none;">
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <hr/>
+          <div class="stats">
+            <!--<i class="ti-reload"></i> <button class="btn btn-sm btn-icon" (click)="uploadBase64();">upload thumb</button>
+            -->
+          </div>
+        </div>
+      </div>
+    </div>
+    <div style="display: none;">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Patient Name</div>
+          <div class="col-md-4">
+            <span class='contenteditable' data-dicom="x00100010"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="PN" class="col-sm-12 form-control" type="text" data-dicom="x00100010" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Patient ID</div>
+          <div class="col-md-4">
+            <span data-dicom="x00100020"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x00100020" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Patient Birth Date</div>
+          <div class="col-md-4">
+            <span data-dicom="x00100030"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00100030" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Study Description</div>
+          <div class="col-md-4">
+            <span data-dicom="x00081030"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x00081030" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Protocol Name</div>
+          <div class="col-md-4">
+            <span data-dicom="x00181030"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x00181030" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Accession #</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080050"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="SH" class="col-sm-12 form-control" type="text" data-dicom="x00080050" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Study Id</div>
+          <div class="col-md-4">
+            <span data-dicom="x00200010"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="SH" class="col-sm-12 form-control" type="text" data-dicom="x00200010" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Study Date</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080020"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080020" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Study Time</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080030"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080030" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Series Description</div>
+          <div class="col-md-4">
+            <span data-dicom="x0008103e"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x0008103e" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Series Date</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080021"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080021" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Series Time</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080031"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080031" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Acquisition Date</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080022"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080022" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Acquisition Time</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080032"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080032" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Content Date</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080023"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080023" />
+          </div>
+        </div>
+
+      </li>
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-4">Content Time</div>
+          <div class="col-md-4">
+            <span data-dicom="x00080033"></span>
+          </div>
+          <div class="col-md-4">
+            <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080033" />
+          </div>
+        </div>
+      </li>
+    </div>
+    <!--<div class="card text-center">
+      <div class="content">
+        <h3> Anonymize dicom image</h3>
+        <div class="row justify-content-center">
+          <div class="icon-big icon-warning text-center">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <label class="btn btn-success btn-xs">
+                  <i class="fa fa-upload" aria-hidden="true"></i>
+                  Browse
+                  <input type="file" id="fichier2" name="fichier2" (change)="fileChangeEvent2($event)" style="display: none;">
+                </label>
+              </span>
+            </div>
+
+          </div>
+        </div>
+        <div class="footer">
+          <hr/>
+          <div class="stats">
+              <button *ngIf="showButton" class="btn btn-sm btn-icon" (click)="downloadFile();">download</button>
+          </div>
+        </div>
+      </div>
+    </div>-->
+
+  </div>
+  <div class="col-md-9 anyClass">
+    <div class="card gallery">
+      
+        <div class="content">
+      <!--<div class="header">-->
+        <button id="invert" class="btn btn-sm btn-success">color Invert</button>
+        <button id="interpolation" class="btn btn-sm btn-success" style="display: none;">brightness</button>
+        <button id="hflip" class="btn btn-sm btn-success">Horizontal Flip</button>
+        <button id="vflip" class="btn btn-sm btn-success">Vertical Flip</button>
+        <button id="rotate" class="btn btn-sm btn-success"><i class="fa fa-repeat" aria-hidden="true"></i>Rotate 90</button>
+        <button id="reset" class="btn btn-sm btn-success">reset</button>
+        <button id="details" class="btn btn-sm btn-success" (click)="open(content);">details</button>
+        <button *ngIf="showButton" id="download" class="btn btn-sm btn-success" (click)="downloadFile();"><i class="fa fa-download" aria-hidden="true"></i>anonymized</button>
+      <!--</div>
+      <div class="content">-->
+
+        <!-- zoom -->
+        <section id="focal">
+          <div class="panzoom">
+            <div class="container">
+              <div class="content">
+                <div id="dicomImage" style="height: 70vh">
+                </div>
+                <canvas id="canvas1">
+
+                </canvas>
+                <div id="animation"></div>
+              </div>
+            </div>
+          </div>
+        </section>
+        <!-- fin zoom-->
+      </div>
+    </div>
+  </div>
+</div>

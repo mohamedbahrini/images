@@ -1,0 +1,44 @@
+<div class="row justify-content-center top">
+    <div class="col-md-4">
+        <img src="../assets/img/Screenshot.png" class="img-thumbnail">
+      </div>
+    
+      <div class="col-md-6">
+    <!--<div class="jumbotron">-->
+      <div class="container">
+        <h3 class="display-4">Login</h3>
+        <p class="lead">Welcome to IMAGE-X.</p>
+        <hr class="my-4">
+        <form name="form" (ngSubmit)="f.form.valid && authenticate()" #f="ngForm" novalidate>
+          <div class="input-group">
+            <span class="input-group-addon">
+            <fa name="user-circle"></fa>
+            </span>
+            <input type="text" class="form-control" name="username" [(ngModel)]="model.username" #username="ngModel"
+                   placeholder="user name"
+                   required/>
+          </div>
+          <div *ngIf="f.submitted && !username.valid" class="help-block">Username is required</div>
+          <div class="input-group">
+            <span class="input-group-addon">
+              <fa name="key"></fa>
+            </span>
+            <input type="password" class="form-control form-control-success" name="password" [(ngModel)]="model.password" #password="ngModel"
+                   placeholder="password"
+                   required/>
+          </div>
+          <div *ngIf="f.submitted && !password.valid" class="help-block">Password is required</div>
+          <fa *ngIf="loading" name="spinner" animation="spin"></fa>
+          <br/>
+          <button [disabled]="loading" class="btn btn-primary">Login</button>  
+          <br/><br/>
+          <div class="row justify-content-center">
+              dont have an account yet&nbsp;&nbsp; <a routerLink="/subscribe"> subscribe</a>
+          </div>
+          <br/>
+          <div *ngIf="error" class="alert alert-danger">{{error}}</div>
+        </form>
+      </div>
+    <!--</div>-->
+  </div>
+</div>

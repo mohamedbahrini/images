@@ -1,0 +1,79 @@
+<div class="card">
+  <div class="header">
+    <div class="row">
+      <div class="col-4">
+
+        <p class="category">
+          {{id}}
+        </p>
+      </div>
+      <div class="col-8">
+        <h4 class="title">
+          <button class="btn btn-sm btn-success btn-icon" (click)="type = true; getMessages()">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>received</button>
+          <button class="btn btn-sm btn-success btn-icon" (click)="type = false; getMessages()">
+            <i class="fa fa-arrow-circle-up" aria-hidden="true"></i>sent</button>
+        </h4>
+      </div>
+    </div>
+  </div>
+  <div class="content table-responsive table-full-width" *ngIf="messages">
+    <ul class="list-group">
+      <li class="list-group-item">
+        <div class="row">
+          <div class="col-md-3">Date</div>
+          <div class="col-md-3">Subject</div>
+          <div class="col-md-3">Text</div>
+          <div class="col-md-3">Attached files</div>
+        </div>
+      </li>
+      <li class="list-group-item" *ngFor="let message of messages | async">
+        <div class="row">
+          <div class="col-md-3">{{message.date | date: 'dd/MM/yyyy hh:mm:ss'}}</div>
+          <div class="col-md-3">{{message.title}}</div>
+          <div class="col-md-3">{{message.text}}</div>
+          <div class="col-md-3">
+            <div class="row" *ngFor="let fichier of message['files']">
+              <div class="row">
+                <div class="col-md-7">
+                  {{fichier.filename}}
+                </div>
+                <div class="col-md-5">
+                  <button class="btn btn-xs btn-primary" (click)="downloadFile(fichier.filename);">download</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </li>
+
+    </ul>
+    <!--<table class="table table-striped">
+      <thead>
+        <th>Date</th> 
+        <th>Subject</th>
+        <th>Text</th>
+        <th>attached files</th>
+      </thead>
+      <tbody>
+        <tr *ngFor="let message of messages">
+          <td>{{message.date | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+          <td>{{message.title}}</td>
+          <td>{{message.text}}</td>
+          <td>
+            <div class="row" *ngFor="let fichier of message['files']">
+              <div class="row">
+                <div class="col-md-9">
+                  {{fichier.filename}}
+                </div>
+                <div class="col-md-3">
+                  <button class="btn btn-xs btn-primary" (click)="downloadFile(fichier.filename);">download</button>
+                </div>
+              </div>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>-->
+  </div>
+</div>

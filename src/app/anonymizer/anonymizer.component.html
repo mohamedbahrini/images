@@ -1,0 +1,245 @@
+<div class="row ">
+  <div class="col-md-3">
+    <div class="card text-center">
+      <div class="content">
+        <h3> Open images</h3>
+        <div class="row justify-content-center">
+          <div class="icon-big icon-warning text-center">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <label class="btn btn-success btn-xs">
+                  <i class="fa fa-upload" aria-hidden="true"></i>
+                  Browse
+                  <input type="file" id="fichier" name="fichier" (change)="fileChangeEvent($event)" style="display: none;">
+                </label>
+              </span>
+            </div>
+
+          </div>
+        </div>
+        <div class="footer">
+          <hr/>
+          <div class="stats">
+            <i class="ti-reload"></i>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-9 anyClass">
+    <div class="card gallery">
+      <div class="header">
+        <h4 class="title">
+          <button class="btn btn-sm btn-success btn-icon" (click)="downloadFile();">
+            <i class="fa fa-arrow-circle-down" aria-hidden="true"></i>download anonimized image</button>
+        </h4>
+      </div>
+      <hr>
+      <div class="content">
+        <ul class="list-group">
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Attribute</div>
+              <div class="col-md-4">Original</div>
+              <div class="col-md-4">De-identified
+                <!--<button id="download" class="btn btn-sm btn-primary" (click)="downloadFile();">Download</button>
+              --></div>
+            </div>
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Patient Name</div>
+              <div class="col-md-4">
+                <span class='contenteditable' data-dicom="x00100010"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="PN" class="col-sm-12 form-control" type="text" data-dicom="x00100010" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Patient ID</div>
+              <div class="col-md-4">
+                <span data-dicom="x00100020"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x00100020" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Patient Birth Date</div>
+              <div class="col-md-4">
+                <span data-dicom="x00100030"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00100030" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Study Description</div>
+              <div class="col-md-4">
+                <span data-dicom="x00081030"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x00081030" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Protocol Name</div>
+              <div class="col-md-4">
+                <span data-dicom="x00181030"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x00181030" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Accession #</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080050"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="SH" class="col-sm-12 form-control" type="text" data-dicom="x00080050" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Study Id</div>
+              <div class="col-md-4">
+                <span data-dicom="x00200010"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="SH" class="col-sm-12 form-control" type="text" data-dicom="x00200010" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Study Date</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080020"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080020" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Study Time</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080030"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080030" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Series Description</div>
+              <div class="col-md-4">
+                <span data-dicom="x0008103e"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="LO" class="col-sm-12 form-control" type="text" data-dicom="x0008103e" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Series Date</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080021"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080021" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Series Time</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080031"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080031" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Acquisition Date</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080022"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080022" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Acquisition Time</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080032"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080032" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Content Date</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080023"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="DA" class="col-sm-12 form-control" type="text" data-dicom="x00080023" />
+              </div>
+            </div>
+
+          </li>
+          <li class="list-group-item">
+            <div class="row">
+              <div class="col-md-4">Content Time</div>
+              <div class="col-md-4">
+                <span data-dicom="x00080033"></span>
+              </div>
+              <div class="col-md-4">
+                <input data-vr="TM" class="col-sm-12 form-control" type="text" data-dicom="x00080033" />
+              </div>
+            </div>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

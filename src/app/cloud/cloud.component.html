@@ -1,0 +1,134 @@
+<ng-template #content let-c="close" let-d="dismiss">
+  <div class="modal-body text-center">
+    <div id="dropZone" class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-offset-2 col-md-8">
+          <div style="text-align:center;">
+
+            Click on button to upload an image<br>
+            <div id="dicomImage" style="height: 70vh">
+            </div>
+            <div class="input-group">
+              <span class="input-group-btn">
+                <label class="btn btn-success btn-xs">
+                    <i class="fa fa-upload" aria-hidden="true"></i>
+                  Browse <input type="file" id="fichier" name="fichier" (change)="fileChangeEvent($event); c('Close click')"
+                                style="display: none;">
+                </label>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="container">
+      <div class="progress">
+          <div class="progress-bar" role="progressbar" style="width: 0%;"
+                     aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">0%</div>
+        </div>
+  </div>
+  <br><br>
+
+</ng-template>
+
+<ng-template #shareImage let-c="close" let-d="dismiss">
+  <div class="modal-body text-center">
+    <div id="dropZone" class="container-fluid">
+      <div class="row justify-content-center">
+        <div class="col-md-offset-2 col-md-8">
+          <div style="text-align:center;">
+            <img src="{{selectedImage}}" style="height: 60vh">
+            <br><br>
+            <label>Description</label>
+            <input type="text" class="form-control border-input" name="description" placeholder="description" [(ngModel)]="description"> {{description}}
+            <br>
+            <button class="btn btn-sm btn-primary" (click)="partager();  c('Close click')">share</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br><br>
+
+</ng-template>
+
+<div class="row">
+  <div class="col-md-3">
+    <div class="card">
+      <div class="content">
+        <div class="row">
+          <div class="col-xs-5 col-md-5">
+            <div class="icon-big icon-warning text-center">
+              <i class="fa fa-database" aria-hidden="true"></i>
+            </div>
+          </div>
+          <div class="col-xs-7 col-md-7">
+            <div class="numbers">
+              <p>Used space</p>
+              {{containerSize}}MO
+            </div>
+          </div>
+        </div>
+        <div class="footer">
+          <hr/>
+          <div class="stats">
+            <i class="ti-reload"></i> Updated now
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="card text-center">
+
+      <div class="content">
+        <h3> Upload files</h3>
+        <div class="row justify-content-center">
+          <div class="icon-big icon-warning text-center">
+            <i class="fa fa-cloud-upload" aria-hidden="true"></i>
+          </div>
+        </div>
+        <div class="footer">
+          <hr/>
+          <button class="btn btn-lg btn-outline-primary btn-xs" (click)="open(content)"><i class="fa fa-upload" aria-hidden="true"></i>select file</button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="col-md-9 anyClass">
+    <div class="card ">
+      <div class="header">
+        <p class="category">
+          Files on the cloud
+        </p>
+      </div>
+      <div class="content table-responsive table-full-width">
+        <table class="table table-striped">
+          <thead>
+          <th>Thumb</th>
+          <th>File name</th>
+          <th>Date</th>
+          <th>Actions</th>
+          </thead>
+          <tbody>
+          <tr *ngFor="let file of files">
+            <td><img src="{{ file.thumb }}" class="img-thumbnail" width="150px"></td>
+            <td> {{ file.filename }}</td>
+            <td> {{file.date | date: 'dd/MM/yyyy hh:mm:ss'}}</td>
+            <td>
+              <button class="btn btn-sm btn-success btn-icon" (click)="deleteBlob(file);"><i class="fa fa-times" aria-hidden="true"></i>delete</button>
+              <button class="btn btn-sm btn-success btn-icon" (click)="downloadBlob(file.savedfilename);"> <i class="fa fa-download" aria-hidden="true"></i>download</button>
+              <button class="btn btn-sm btn-success btn-icon" (click)="open(shareImage);setSelected(file);"> <i class="fa fa-share" aria-hidden="true"></i>share</button>
+            </td>
+          </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
